@@ -24,6 +24,7 @@ public class SetupActivity extends AppCompatActivity {
     Button backButton;
     Button newSurveyButton;
     EditText endpointEdit;
+    EditText tagEdit;
     EditText questionEdit;
     EditText firstAnswerEdit;
     EditText secondAnswerEdit;
@@ -80,6 +81,9 @@ public class SetupActivity extends AppCompatActivity {
                 if(endpointEdit.getText().toString().equals("")) {
                     endpointEdit.setError("Field is required");
                 }
+                else if(tagEdit.getText().toString().equals("")) {
+                    tagEdit.setError("Field is required");
+                }
                 else if(questionEdit.getText().toString().equals("")) {
                     questionEdit.setError("Field is required");
                 }
@@ -91,16 +95,17 @@ public class SetupActivity extends AppCompatActivity {
                 }
                 else {
                     queue.add(postRequest);
-                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
+//                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
 //                    intent.putExtra("question", questionEdit.getText().toString());
 //                    intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
 //                    intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
-                    startActivity(intent);
+//                    startActivity(intent);
                 }
             }
         });
 
         endpointEdit = (EditText) findViewById(R.id.endpointEdit);
+        tagEdit = (EditText) findViewById(R.id.tagEdit);
         questionEdit = (EditText) findViewById(R.id.questionEdit);
         firstAnswerEdit = (EditText) findViewById(R.id.firstAnswerEdit);
         secondAnswerEdit = (EditText) findViewById(R.id.secondAnswerEdit);

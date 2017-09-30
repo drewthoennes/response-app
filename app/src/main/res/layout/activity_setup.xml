@@ -21,7 +21,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="120dp">
+        android:paddingTop="100dp">
         <EditText
             android:id="@+id/endpointEdit"
             android:layout_width="match_parent"
@@ -32,12 +32,22 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
         <EditText
+            android:id="@+id/tagEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:hint="Tag"
+            android:layout_below="@id/endpointEdit"
+            android:paddingBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+        <EditText
             android:id="@+id/questionEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
             android:hint="Question"
-            android:layout_below="@id/endpointEdit"
+            android:layout_below="@id/tagEdit"
             android:paddingBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
