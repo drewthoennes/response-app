@@ -56,7 +56,7 @@ public class SurveyActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("tag", tag);
                 params.put("sentiment", choice);
-
+                
                 return params;
             }
         };
