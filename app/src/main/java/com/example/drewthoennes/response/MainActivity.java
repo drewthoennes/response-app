@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button newSurveyButton;
+    com.beardedhen.androidbootstrap.BootstrapButton newSurveyButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        newSurveyButton = (Button) findViewById(R.id.newSurveyButton);
+        newSurveyButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.newSurveyButton);
         newSurveyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SetupActivity.class);

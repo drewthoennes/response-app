@@ -21,8 +21,8 @@ import java.util.Map;
 
 public class SetupActivity extends AppCompatActivity {
 
-    Button backButton;
-    Button newSurveyButton;
+    com.beardedhen.androidbootstrap.BootstrapButton backButton;
+    com.beardedhen.androidbootstrap.BootstrapButton newSurveyButton;
     EditText endpointEdit;
     EditText tagEdit;
     EditText questionEdit;
@@ -37,36 +37,7 @@ public class SetupActivity extends AppCompatActivity {
 
         getIntent();
 
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://a.elnardu.me:8080/vote";
-        final StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response == "") {
-                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
-                    intent.putExtra("question", questionEdit.getText().toString());
-                    intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
-                    intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
-                    startActivity(intent);
-                }
-            }
-        }, new Response.ErrorListener() {
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("name", "Elnard");
-
-                return params;
-            }
-        };
-
-        backButton = (Button) findViewById(R.id.backButton);
+        backButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -75,13 +46,10 @@ public class SetupActivity extends AppCompatActivity {
             }
         });
 
-        newSurveyButton = (Button) findViewById(R.id.newSurveyButton);
+        newSurveyButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.newSurveyButton);
         newSurveyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if(endpointEdit.getText().toString().equals("")) {
-                    endpointEdit.setError("Field is required");
-                }
-                else if(tagEdit.getText().toString().equals("")) {
+                if(tagEdit.getText().toString().equals("")) {
                     tagEdit.setError("Field is required");
                 }
                 else if(questionEdit.getText().toString().equals("")) {
@@ -94,17 +62,16 @@ public class SetupActivity extends AppCompatActivity {
                     secondAnswerEdit.setError("Field is required");
                 }
                 else {
-                    queue.add(postRequest);
-//                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
-//                    intent.putExtra("question", questionEdit.getText().toString());
-//                    intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
-//                    intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
+                    intent.putExtra("question", questionEdit.getText().toString());
+                    intent.putExtra("tag", tagEdit.getText().toString());
+                    intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
+                    intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
+                    startActivity(intent);
                 }
             }
         });
 
-        endpointEdit = (EditText) findViewById(R.id.endpointEdit);
         tagEdit = (EditText) findViewById(R.id.tagEdit);
         questionEdit = (EditText) findViewById(R.id.questionEdit);
         firstAnswerEdit = (EditText) findViewById(R.id.firstAnswerEdit);

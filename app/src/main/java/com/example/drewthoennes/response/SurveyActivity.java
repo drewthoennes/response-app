@@ -2,6 +2,7 @@ package com.example.drewthoennes.response;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -19,12 +20,14 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.R.attr.duration;
+
 public class SurveyActivity extends AppCompatActivity {
 
-    Button backButton;
+    com.beardedhen.androidbootstrap.BootstrapButton backButton;
     TextView questionText;
-    Button firstButton;
-    Button secondButton;
+    com.beardedhen.androidbootstrap.BootstrapButton firstButton;
+    com.beardedhen.androidbootstrap.BootstrapButton secondButton;
 
     String question;
     String tag;
@@ -46,7 +49,6 @@ public class SurveyActivity extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
-
             }
         }
         ) {
@@ -56,12 +58,12 @@ public class SurveyActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("tag", tag);
                 params.put("sentiment", choice);
-                
+
                 return params;
             }
         };
 
-        backButton = (Button) findViewById(R.id.backButton);
+        backButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -77,21 +79,23 @@ public class SurveyActivity extends AppCompatActivity {
         questionText = (TextView) findViewById(R.id.questionText);
         questionText.setText(question);
 
-        firstButton = (Button) findViewById(R.id.firstButton);
+        firstButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.firstButton);
         firstButton.setText(firstAnswer);
         firstButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 choice = "1";
                 queue.add(postRequest);
+                Snackbar.make(findViewById(R.id.activity_survey), "Answer recorded. Thank you for your response!", Snackbar.LENGTH_SHORT).show();
             }
         });
 
-        secondButton = (Button) findViewById(R.id.secondButton);
+        secondButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.secondButton);
         secondButton.setText(secondAnswer);
         secondButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 choice = "0";
                 queue.add(postRequest);
+                Snackbar.make(findViewById(R.id.activity_survey), "Answer recorded. Thank you for your response!", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
