@@ -49,7 +49,7 @@ public class RecentActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        final String[][] searchData = {{"How was the food?", "food", "Amazing", "Could've been better"}, {"Were you able to get help when you needed it?", "support", "Yes", "No"}, {"How were the songs at the event?", "music", "Really good", "Could've been better"}};
+        final String[][] searchData = {{"How was the food?", "food", "Amazing", "Could've been better", "59d0b3c6ebed03458f6b8392"}, {"Were you able to get help when you needed it?", "support", "Yes", "No", "59d0b6f98926924655ccbd98"}, {"How were the songs at the event?", "music", "Really good", "Could've been better", "59d0b7488926924655ccbd99"}};
         String[] recentSearches = new String[searchData.length];
         for(int i = 0; i < searchData.length; i++) {
             recentSearches[i] = searchData[i][0];
@@ -64,6 +64,7 @@ public class RecentActivity extends AppCompatActivity {
                intent.putExtra("tag", searchData[position][1]);
                intent.putExtra("firstAnswer", searchData[position][2]);
                intent.putExtra("secondAnswer", searchData[position][3]);
+               intent.putExtra("pollId", searchData[position][4]);
                startActivity(intent);
            }
         });

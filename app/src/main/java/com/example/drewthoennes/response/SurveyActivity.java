@@ -34,6 +34,7 @@ public class SurveyActivity extends AppCompatActivity {
     String firstAnswer;
     String secondAnswer;
     String choice;
+    String pollId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://a.elnardu.me:8080/vote"; // CHANGE THIS
+        String url = "http://a.elnardu.me:8080/polls/vote";
         final StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -58,6 +59,7 @@ public class SurveyActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("tag", tag);
                 params.put("sentiment", choice);
+                params.put("pollId", pollId);
 
                 return params;
             }
@@ -73,6 +75,7 @@ public class SurveyActivity extends AppCompatActivity {
 
         question = getIntent().getStringExtra("question").toString();
         tag = getIntent().getStringExtra("tag").toString();
+        pollId = getIntent().getStringExtra("pollId").toString();
         firstAnswer = getIntent().getStringExtra("firstAnswer").toString();
         secondAnswer = getIntent().getStringExtra("secondAnswer").toString();
 

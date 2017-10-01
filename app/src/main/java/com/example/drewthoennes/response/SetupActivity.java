@@ -37,6 +37,8 @@ public class SetupActivity extends AppCompatActivity {
     EditText secondAnswerEdit;
 
     protected void onCreate(Bundle savedInstanceState) {
+        final RequestQueue queue = Volley.newRequestQueue(this);
+
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -69,11 +71,35 @@ public class SetupActivity extends AppCompatActivity {
                     secondAnswerEdit.setError("Field is required");
                 }
                 else {
-                    Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
-                    intent.putExtra("question", questionEdit.getText().toString());
-                    intent.putExtra("tag", tagEdit.getText().toString());
-                    intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
-                    intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
+
+
+
+                    String url = "http://a.elnardu.me:8080/polls/create";
+                    final StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            System.out.println(response.replaceAll("^\"|\"$", ""));
+                            nextActivity(response);
+
+                        }
+                    }, new Response.ErrorListener() {
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams()
+                        {
+                            Map<String, String>  params = new HashMap<String, String>();
+                            params.put("question", questionEdit.getText().toString());
+                            params.put("tag", tagEdit.getText().toString());
+                            params.put("goodAnswer", firstAnswerEdit.getText().toString());
+                            params.put("badAnswer", secondAnswerEdit.getText().toString());
+
+                            return params;
+                        }
+                    };
 
 //                    String filename = "recentSurveys.txt";
 //
@@ -90,8 +116,7 @@ public class SetupActivity extends AppCompatActivity {
 //                    } catch(Exception exception) {
 //
 //                    }
-
-                    startActivity(intent);
+                    queue.add(postRequest);
                 }
             }
         });
@@ -100,5 +125,15 @@ public class SetupActivity extends AppCompatActivity {
         questionEdit = (EditText) findViewById(R.id.questionEdit);
         firstAnswerEdit = (EditText) findViewById(R.id.firstAnswerEdit);
         secondAnswerEdit = (EditText) findViewById(R.id.secondAnswerEdit);
+    }
+
+    void nextActivity(String pollId) {
+        Intent intent = new Intent(getApplicationContext(), SurveyActivity.class);
+        intent.putExtra("question", questionEdit.getText().toString());
+        intent.putExtra("tag", tagEdit.getText().toString());
+        intent.putExtra("firstAnswer", firstAnswerEdit.getText().toString());
+        intent.putExtra("secondAnswer", secondAnswerEdit.getText().toString());
+        intent.putExtra("pollId", pollId);
+        startActivity(intent);
     }
 }
