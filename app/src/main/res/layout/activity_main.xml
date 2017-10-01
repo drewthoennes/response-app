@@ -26,11 +26,28 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:translationY="10dp"
             app:bootstrapBrand="primary"
             app:bootstrapSize="lg"
             app:buttonMode="regular"
             app:showOutline="false"
             app:roundedCorners="true" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/recentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open recent surveys"
+            android:layout_below="@id/newSurveyButton"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:bootstrapBrand="primary"
+            app:bootstrapSize="lg"
+            app:buttonMode="regular"
+            app:showOutline="false"
+            app:roundedCorners="true" />
+
     </RelativeLayout>
 
 </LinearLayout>

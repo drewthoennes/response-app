@@ -39,7 +39,9 @@
             android:hint="Tag"
             android:paddingBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#1477d5"
+            android:textCursorDrawable="@drawable/colored_cursor"/>
         <EditText
             android:id="@+id/questionEdit"
             android:layout_width="match_parent"
@@ -49,7 +51,9 @@
             android:layout_below="@id/tagEdit"
             android:paddingBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#1477d5"
+            android:textCursorDrawable="@drawable/colored_cursor"/>
         <EditText
             android:id="@+id/firstAnswerEdit"
             android:layout_width="match_parent"
@@ -59,7 +63,9 @@
             android:layout_below="@id/questionEdit"
             android:paddingBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#1477d5"
+            android:textCursorDrawable="@drawable/colored_cursor"/>
         <EditText
             android:id="@+id/secondAnswerEdit"
             android:layout_width="match_parent"
@@ -69,7 +75,9 @@
             android:layout_below="@id/firstAnswerEdit"
             android:paddingBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#1477d5"
+            android:textCursorDrawable="@drawable/colored_cursor"/>
     </RelativeLayout>
 
     <RelativeLayout

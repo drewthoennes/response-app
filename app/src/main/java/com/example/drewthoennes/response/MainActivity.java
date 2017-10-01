@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     com.beardedhen.androidbootstrap.BootstrapButton newSurveyButton;
+    com.beardedhen.androidbootstrap.BootstrapButton recentButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         newSurveyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SetupActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+        recentButton = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.recentButton);
+        recentButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RecentActivity.class);
                 startActivityForResult(intent, 100);
             }
         });
